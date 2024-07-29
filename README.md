@@ -3,7 +3,7 @@
 
 # Introduzione
 
-Il progetto "Trattoria Bella Vita" è un'applicazione web sviluppata con Ruby on Rails 7, progettata per semplificare la gestione delle operazioni quotidiane di un ristorante. L'applicazione consente di gestire ingredienti, ricette, clienti e ordini, offrendo una soluzione completa e interattiva per il personale del ristorante. L'interfaccia utente è realizzata utilizzando Bootstrap 5 per garantire un design moderno e responsivo, mentre PostgreSQL è utilizzato come sistema di gestione del database per una gestione efficace dei dati.
+Il progetto "Gestione dell Ricette Culinarie di un RIstorante" è un'applicazione web sviluppata con Ruby on Rails 7, progettata per semplificare la gestione delle operazioni quotidiane di un ristorante. L'applicazione consente di gestire ingredienti, ricette, clienti e ordini, offrendo una soluzione completa e interattiva per il personale del ristorante. L'interfaccia utente è realizzata utilizzando Bootstrap 5 per garantire un design moderno e responsivo, mentre PostgreSQL è utilizzato come sistema di gestione del database per una gestione efficace dei dati.
 
 
 # Obiettivi del Progetto
@@ -61,7 +61,7 @@ Funzionalità:
 
 # CONCLUSIONI 
 
-Il progetto "Trattoria Bella Vita" rappresenta una soluzione completa e moderna per la gestione delle operazioni quotidiane di un ristorante. Con l'uso di Ruby on Rails 7, Bootstrap 5 e PostgreSQL, il sistema è stato progettato per offrire un'interfaccia utente intuitiva. Le funzionalità implementate soddisfano le esigenze del ristorante, semplificando la gestione degli ingredienti, delle ricette, dei clienti e degli ordini. L'approccio adottato garantisce una piattaforma affidabile e facile da utilizzare, ottimizzando le operazioni e migliorando l'efficienza complessiva del ristorante.
+Il progetto "Gestione dell Ricette Culinarie di un RIstorante" rappresenta una soluzione completa e moderna per la gestione delle operazioni quotidiane di un ristorante. Con l'uso di Ruby on Rails 7, Bootstrap 5 e PostgreSQL, il sistema è stato progettato per offrire un'interfaccia utente intuitiva. Le funzionalità implementate soddisfano le esigenze del ristorante, semplificando la gestione degli ingredienti, delle ricette, dei clienti e degli ordini. L'approccio adottato garantisce una piattaforma affidabile e facile da utilizzare, ottimizzando le operazioni e migliorando l'efficienza complessiva del ristorante.
 
 
 
