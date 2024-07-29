@@ -1,0 +1,56 @@
+/* app/assets/stylesheets/show_ingredient.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap');
+
+body {
+    background-image: url('/assets/image2.jpg'); /* Percorso relativo */
+    background-size: cover; /* Adatta l'immagine a tutto lo schermo */
+    background-position: center; /* Centra l'immagine */
+    background-attachment: fixed; /* Fissa l'immagine durante lo scroll */
+    font-family: 'Poppins', sans-serif;
+}
+
+.ingredient-card {
+    max-width: 600px;
+    background-color: #a9a9a9; /* Colore di sfondo chiaro per la card */
+    color: #000; /* Colore del testo nero */
+    margin: auto; /* Centrato orizzontalmente */
+    border-radius: 8px; /* Opzionale: aggiungi angoli arrotondati alla card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Opzionale: aggiungi un'ombra leggera */
+}
+
+.ingredient-card .card-body {
+    padding: 20px; /* Spaziatura interna per la card */
+}
+
+.ingredient-card .card-title {
+    font-size: 1.5rem; /* Dimensione del font per il titolo */
+    font-weight: bold; /* Grassetto per il titolo */
+    color: #000; /* Colore del testo nero per il titolo */
+}
+
+.ingredient-card .card-text {
+    margin-bottom: 10px; /* Margine inferiore per i paragrafi */
+    color: #000; /* Colore del testo nero per i dettagli */
+}
+
+.ingredient-card .btn {
+    margin-right: 10px; /* Spaziatura tra i pulsanti */
+}
+
+
+.card-body {
+    color: #000; /* Colore del testo nero */
+}
+
+.card-title {
+    color: #000; /* Colore del testo nero per il titolo */
+}
+
+.card-text {
+    color: #000; /* Colore del testo nero per i dettagli */
+}
+
+.btn-container {
+    display: flex;
+    gap: 10px; /* Spazio tra i bottoni */
+}

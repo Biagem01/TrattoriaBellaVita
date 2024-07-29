@@ -1,0 +1,128 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+    background-color: #000000; /* Sfondo grigio scuro */
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: transparent;
+    border-bottom: none;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+    height: 100px;
+    transition: transform 0.3s ease, height 0.3s ease; /* Transizione per scaling e altezza */
+}
+
+/* Colore dei link della navbar */
+.navbar .navbar-nav .nav-link {
+    color: rgb(255, 255, 255) !important;
+}
+
+/* Colore dei link attivi della navbar */
+.navbar .navbar-nav .nav-link.active {
+    color: rgb(255, 255, 255) !important;
+}
+
+/* Colore del brand nella navbar */
+.navbar .navbar-brand {
+    color: rgb(255, 255, 255) !important;
+}
+
+/* Colore del brand al passaggio del mouse */
+.navbar .navbar-brand:hover {
+    color: #ffffff !important;
+}
+
+/* Colore dei link al passaggio del mouse */
+.navbar .navbar-nav .nav-link:hover {
+    color: #333 !important;
+}
+
+/* Immagine del carousel */
+.carousel-inner {
+    width: 100vw;
+    height: 100vh;
+}
+
+.carousel-item {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.carousel-image-container {
+    height: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    overflow: hidden; /* Nasconde la parte dell'immagine che esce dai bordi */
+}
+
+.carousel-image {
+    width: 100%;
+    height: calc(100% - 10px); /* Riduce l'altezza dell'immagine per lasciare spazio al padding superiore */
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease; /* Transizione per l'effetto di scaling */
+}
+
+/* Rimuovi il padding inferiore dall'ultima slide del carousel */
+.carousel-item.no-bottom-padding .carousel-image-container {
+    padding-bottom: 100px;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    z-index: 3;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.hero-content h1 {
+    font-size: 3rem; /* Dimensione del testo grande */
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 1.5rem; /* Dimensione del testo piccolo */
+}
+
+.container {
+    color: white;
+}
+
+.text-and-images-section {
+    /* Puoi aggiungere altre regole di stile per la sezione se necessario */
+    text-align: center;
+}
+
+.text-and-images-section h2 {
+    font-family: 'Anton', sans-serif; /* Sostituisci con il tuo font preferito */
+    font-size: 2rem; /* Imposta la dimensione del font se necessario */
+    color: rgb(255, 255, 255); /* Imposta il colore del testo se necessario */
+}
+
+.text-and-images-section p {
+    font-family: 'Dancing Script', sans-serif; /* Sostituisci con il tuo font preferito */
+    font-size: 1rem; /* Imposta la dimensione del font se necessario */
+    color: rgb(255, 255, 255); /* Imposta il colore del testo se necessario */
+}
+
+.text-and-images-section .img-fluid {
+    width: auto; /* Lascia che la larghezza si adatti automaticamente */
+    height: 300px; /* Imposta un'altezza fissa per rendere le immagini più lunghe */
+    object-fit: cover; /* Assicura che l'immagine copra l'intera area disponibile */
+    object-position: center; /* Centra l'immagine all'interno del contenitore */
+}
+

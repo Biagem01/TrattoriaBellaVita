@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton+SC&family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('/assets/image2.jpg'); /* Percorso relativo */
+    background-size: cover; /* Adatta l'immagine a tutto lo schermo */
+    background-position: center; /* Centra l'immagine */
+    background-attachment: fixed; /* Fissa l'immagine durante lo scroll */
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.card {
+    border-radius: 20px;
+    width: 100%;
+    max-width: 600px; /* Limita la larghezza massima del modulo */
+    background-color: white;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombra per dare effetto di sollevamento */
+}
+
+.btn-primary {
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(75, 14, 154, 1) 35%, rgba(0, 212, 255, 1) 100%);
+    color: white; /* Testo bianco per il pulsante */
+    font-weight: bold;
+    font-size: 1.25rem; /* Aumenta la dimensione del testo */
+}
+
+.btn-secondary {
+    border: none;
+    border-radius: 50px;
+    background-color: #6c757d; /* Colore secondario predefinito di Bootstrap */
+    color: white; /* Testo bianco per il pulsante */
+    font-weight: bold;
+    font-size: 1.25rem; /* Aumenta la dimensione del testo */
+}
+
+.form-control {
+    color: rgba(0, 0, 0, .87);
+    border: 1px solid #ced4da; /* Aggiungi un bordo chiaro e sottile */
+    box-shadow: none !important;
+    border-radius: 0.375rem; /* Angoli arrotondati per i campi di input */
+}
+
+.form-control:focus {
+    border-color: #80bdff; /* Colore del bordo quando il campo è in focus */
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25); /* Ombra sottile per focus */
+}
+
+.custom-title {
+    font-size: 3rem; /* Dimensione del font del titolo */
+    font-weight: 700; /* Peso del font per il titolo */
+    text-align: center; /* Allinea il testo al centro */
+    color: #ffffff; /* Colore del testo del titolo */
+    margin-bottom: 20px; /* Spazio inferiore per distanziare dal modulo */
+    font-family: 'Arsenal SC', sans-serif; /* Usa il font Poppins */
+}
+
+.form-label {
+    font-weight: 800;
+    color: #333; /* Colore del testo delle etichette */
+}
+
+@media only screen and (max-width: 600px) {
+    .card {
+        width: 90% !important; /* Aumenta la larghezza per i dispositivi mobili */
+        padding: 10px; /* Riduci il padding sui dispositivi mobili */
+    }
+
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        font-size: 0.8rem; /* Assicurati che il testo sia di dimensione appropriata sui dispositivi mobili */
+    }
+
+    .custom-title {
+        font-size: 1.75rem; /* Riduci ulteriormente la dimensione del font del titolo per dispositivi mobili */
+        margin-bottom: 15px; /* Riduci ulteriormente lo spazio inferiore */
+    }
+
+    .d-grid {
+        margin-bottom: 10px; /* Riduci il margine inferiore per i dispositivi mobili */
+    }
+}

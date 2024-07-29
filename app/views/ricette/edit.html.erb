@@ -1,0 +1,108 @@
+<%= stylesheet_link_tag 'edit_page', media: 'all', 'data-turbo-track': 'reload' %>
+<div class="container mt-4">
+  <h1 class="custom-title mb-4 text-center">Modifica Ricetta</h1>
+
+  <div class="card mx-auto">
+    <div class="card-body">
+      <%= form_with(model: @ricetta, url: ricette_path(@ricetta), local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
+        <% if @ricetta.errors.any? %>
+          <div id="error_explanation" class="alert alert-danger">
+            <h2><%= pluralize(@ricetta.errors.count, "errore") %> impedisce di salvare la ricetta:</h2>
+            <ul>
+              <% @ricetta.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="mb-3">
+          <%= form.label :nome, class: 'form-label' %>
+          <%= form.text_field :nome, class: 'form-control', required: true %>
+          <div class="invalid-feedback">
+            Per favore, inserisci il nome della ricetta.
+          </div>
+        </div>
+
+        <div id="ingredienti-container">
+          <%= form.fields_for :ingredienti_ricettum do |ingredienti_form| %>
+                
+            <div class="ingredienti-fields mb-3" data-index="<%= ingredienti_form.index %>">
+              <div class="mb-3">
+                <%= ingredienti_form.label :ingrediente_id, 'Ingrediente', class: 'form-label' %>
+                <%= ingredienti_form.collection_select :ingrediente_id, @ingredienti, :id, :nome, { include_blank: 'Seleziona un ingrediente' }, class: 'form-control' %>
+              </div>
+
+              <div class="mb-3">
+                <%= ingredienti_form.label :quantita, 'Quantità', class: 'form-label' %>
+                <%= ingredienti_form.number_field :quantita, class: 'form-control', placeholder: 'Inserisci la quantità', required: true %>
+              </div>
+
+              <%= ingredienti_form.hidden_field :_destroy %>
+              <a href="#" class="remove_fields btn btn-danger">Rimuovi ingrediente</a>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="mb-3">
+          <button type="button" id="add-ingredienti" class="btn btn-info">Aggiungi ingrediente</button>
+        </div>
+
+        <div class="d-grid mb-3">
+          <%= form.submit 'Aggiorna Ricetta', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+
+      <div class="d-grid">
+        <%= link_to 'Indietro', ricette_index_path, class: 'btn btn-secondary' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('turbo:load', () => {
+  const ingredientiContainer = document.querySelector('#ingredienti-container');
+  const addIngredientiButton = document.querySelector('#add-ingredienti');
+
+  if (!ingredientiContainer || !addIngredientiButton) {
+    console.error('Contenitore degli ingredienti o pulsante di aggiunta non trovato.');
+    return;
+  }
+
+  addIngredientiButton.addEventListener('click', () => {
+    const lastField = ingredientiContainer.querySelector('.ingredienti-fields:last-of-type');
+    if (lastField) {
+      const newField = lastField.cloneNode(true);
+      const newIndex = new Date().getTime();
+
+      newField.querySelectorAll('[name]').forEach(input => {
+        const name = input.name.replace(/\[\d+\]/, `[${newIndex}]`);
+        input.name = name;
+        input.id = name;
+
+        // Reset input values
+        if (input.type !== 'hidden') {
+          input.value = '';
+        }
+      });
+
+      ingredientiContainer.appendChild(newField);
+    }
+  });
+
+  ingredientiContainer.addEventListener('click', event => {
+    if (event.target.classList.contains('remove_fields')) {
+      event.preventDefault();
+      const field = event.target.closest('.ingredienti-fields');
+      if (field) {
+        const hiddenField = field.querySelector('input[type=hidden]');
+        if (hiddenField) {
+          hiddenField.value = '1';
+        }
+        field.style.display = 'none';
+      }
+    }
+  });
+});
+</script>

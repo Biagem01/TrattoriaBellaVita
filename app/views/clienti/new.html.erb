@@ -1,0 +1,74 @@
+<%= stylesheet_link_tag 'new_clienti', media: 'all', 'data-turbo-track': 'reload' %>
+
+<div class="container mt-4">
+  <h1 class="custom-title mb-4 text-center">AGGIUNGI NUOVO CLIENTE</h1>
+
+  <div class="card mx-auto">
+    <div class="card-body">
+      <% if flash[:alert] %>
+        <div class="alert alert-danger">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+
+      <% if @cliente.errors.any? %>
+        <div class="alert alert-danger">
+          <h4 class="alert-heading">Si sono verificati i seguenti errori:</h4>
+          <ul>
+            <% @cliente.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form_with(model: @cliente, url: clienti_index_path, local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
+        <div class="mb-3">
+          <%= form.label :nome, class: 'form-label' %>
+          <%= form.text_field :nome, class: 'form-control', placeholder: 'Inserisci il nome del cliente', required: true %>
+          <div class="invalid-feedback">
+            Per favore, inserisci il nome del cliente.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :email, class: 'form-label' %>
+          <%= form.email_field :email, class: 'form-control', placeholder: "Inserisci l'email del cliente", required: true %>
+          <% if @cliente.errors[:email].any? %>
+            <div class="invalid-feedback d-block">
+              <%= @cliente.errors[:email].first %>
+            </div>
+          <% else %>
+            <div class="invalid-feedback">
+              Per favore, inserisci una email valida.
+            </div>
+          <% end %>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :telefono, class: 'form-label' %>
+          <%= form.telephone_field :telefono, class: 'form-control', placeholder: 'Inserisci il telefono del cliente', required: true %>
+          <div class="invalid-feedback">
+            Per favore, inserisci il numero di telefono.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <%= form.label :indirizzo, class: 'form-label' %>
+          <%= form.text_area :indirizzo, class: 'form-control', placeholder: "Inserisci l'indirizzo del cliente", required: true %>
+          <div class="invalid-feedback">
+            Per favore, inserisci l'indirizzo del cliente.
+          </div>
+        </div>
+
+        <div class="d-grid mb-3">
+          <%= form.submit 'Crea Cliente', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+
+      <div class="d-grid">
+        <%= link_to 'Indietro', clienti_index_path, class: 'btn btn-secondary' %>
+      </div>
+    </div>
+  </div>
+</div>

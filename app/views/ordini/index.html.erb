@@ -1,0 +1,56 @@
+<%= stylesheet_link_tag 'page_ordini', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<div class="container mt-4">
+  <h1 class="custom-title text-center mb-4">Elenco Ordini</h1>
+
+  <div class="d-flex justify-content-between mb-3">
+    <%= link_to 'Crea Nuovo Ordine', new_ordini_path, class: 'btn btn-primary' %>
+    <%= link_to 'Indietro', root_path, class: 'btn btn-secondary' %>
+  </div>
+
+  <% if notice %>
+    <div class="alert alert-success">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <% if alert %>
+    <div class="alert alert-danger">
+      <%= alert %>
+    </div>
+  <% end %>
+
+  <div class="box-container p-4">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Cliente</th>
+            <th scope="col">Ricette</th>
+            <th scope="col">Azioni</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @ordini.each do |ordine| %>
+            <tr>
+              <td data-label="Cliente"><%= ordine.cliente.nome %></td>
+              <td data-label="Ricette">
+                <% ordine.ordine_ricettum.each do |ordine_ricetta| %>
+                  <div>
+                    <%= ordine_ricetta.ricetta.nome %>: <%= ordine_ricetta.quantita %>
+                  </div>
+                <% end %>
+              </td>
+              <td data-label="Azioni">
+                <div class="btn-group-vertical">
+                  <%= link_to 'Modifica', edit_ordini_path(ordine), class: 'btn btn-warning btn-sm mt-2' %>
+                  <%= button_to 'Elimina', ordini_path(ordine), method: :delete, data: { confirm: 'Sei sicuro di voler eliminare questo ordine?' }, class: 'btn btn-danger btn-sm mt-2' %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

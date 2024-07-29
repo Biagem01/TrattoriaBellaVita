@@ -1,0 +1,56 @@
+<%= stylesheet_link_tag 'page_ricette', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<div class="container mt-4">
+  <h1 class="custom-title text-center mb-4">Elenco Ricette</h1>
+
+  <div class="d-flex justify-content-between mb-3">
+    <%= link_to 'Aggiungi Nuova Ricetta', new_ricette_path, class: 'btn btn-primary' %>
+    <%= link_to 'Indietro', root_path, class: 'btn btn-secondary' %>
+  </div>
+
+  <% if notice %>
+    <div class="alert alert-success">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <% if alert %>
+    <div class="alert alert-danger">
+      <%= alert %>
+    </div>
+  <% end %>
+
+  <div class="box-container p-4">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Ingredienti</th>
+            <th scope="col">Azioni</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @ricette.each do |ricetta| %>
+            <tr>
+              <td data-label="Nome"><%= ricetta.nome %></td>
+              <td data-label="Ingredienti">
+                <% ricetta.ingredienti_ricettum.each do |ingredienti_ricetta| %>
+                  <div>
+                    <%= ingredienti_ricetta.ingrediente.nome %>: <%= ingredienti_ricetta.quantita %>
+                  </div>
+                <% end %>
+              </td>
+              <td data-label="Azioni">
+                <div class="btn-group-vertical">
+                  <%= link_to 'Modifica', edit_ricette_path(ricetta), class: 'btn btn-warning btn-sm' %>
+                  <%= button_to 'Elimina', ricette_path(ricetta), method: :delete, data: { confirm: 'Sei sicuro di voler eliminare questa ricetta?' }, class: 'btn btn-danger btn-sm mt-2' %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<!-- app/views/ingredienti/index.html.erb -->
+<div class="container mt-4">
+  <h1 class="custom-title text-center mb-4">INGREDIENTI NELLA CELLA FRIGORIFERA</h1>
+  <%= stylesheet_link_tag 'page_ingredienti', media: 'all', 'data-turbolinks-track': 'reload' %>
+   
+  <!-- Mostra un messaggio di successo se presente -->
+  <% if notice %>
+    <div class="alert alert-success">
+      <%= notice %>
+    </div>
+  <% end %>
+  <!-- Mostra un messaggio di errore se presente -->
+  <% if alert %>
+    <div class="alert alert-danger">
+      <%= alert %>
+    </div>
+  <% end %>
+
+  <div class="d-flex justify-content-between mb-3">
+    <%= link_to 'Aggiungi Nuovo Ingrediente', new_ingredienti_path, class: 'btn btn-primary' %>
+    <%= link_to 'Indietro', root_path, class: 'btn btn-secondary' %>
+  </div>
+
+  <div class="box-container p-4">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Quantità</th>
+            <th scope="col">Giacenza</th>
+            <th scope="col">Azione</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @ingrediente.each do |ingrediente| %>
+            <tr>
+              <td data-label="Nome"><%= ingrediente.nome %></td>
+              <td data-label="Quantità"><%= ingrediente.quantita %></td>
+              <td data-label="Giacenza"><%= ingrediente.giacenza %></td>
+              <td data-label="Azione">
+                <div class="btn-group-vertical">
+                  <%= link_to 'Modifica', edit_ingredienti_path(ingrediente), class: 'btn btn-warning btn-sm' %>
+                  <%= button_to 'Elimina', ingredienti_path(ingrediente), method: :delete, data: { confirm: 'Sei sicuro di voler eliminare questo ingrediente?' }, class: 'btn btn-danger btn-sm mt-2' %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton+SC&family=Archivo+Black&family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Bitter:ital,wght@0,100..900;1,100..900&family=Teko:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('/assets/image2.jpg'); /* Percorso relativo */
+    background-size: cover; /* Adatta l'immagine a tutto lo schermo */
+    background-position: center; /* Centra l'immagine */
+    background-attachment: fixed; /* Fissa l'immagine durante lo scroll */
+    font-family: 'Poppins', sans-serif;
+}
+
+.table thead th {
+    color: rgb(255, 255, 255); /* Cambia il colore del testo a bianco */
+}
+
+.custom-title {
+    font-family: 'Bitter', sans-serif; /* Usa il font Bitter */
+    font-size: 2.5rem; /* Dimensione del font del titolo */
+    font-weight: 700; /* Peso del font per il titolo */
+    text-align: center; /* Allinea il testo al centro */
+    color: #ffffff; /* Colore del testo del titolo */
+    margin-bottom: 30px; /* Spazio inferiore per distanziare dal modulo */
+}
+
+.custom-header {
+    font-family:'Bitter', sans-serif;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.box-container {
+    background-color: rgba(41, 41, 41, 0.7); /* Colore di sfondo bianco opaco */
+    border-radius: 12px; /* Angoli arrotondati */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Ombra leggera */
+}
+
+.table td {
+    color: white; /* Imposta il colore del testo a bianco per tutte le celle della tabella */
+}
+
+.table th, .table td {
+    padding: 12px; /* Padding per le celle della tabella */
+}
+
+/* Stile specifico per le celle email */
+.email-cell {
+    font-size: 0.9rem; /* Riduci la dimensione del testo per le email */
+}
+
+/* Responsività */
+@media (max-width: 1100px) {
+    .custom-title {
+        font-size: 2rem; /* Riduci la dimensione del font del titolo per schermi più piccoli */
+    }
+
+    .btn {
+        font-size: 0.6rem; /* Riduci la dimensione dei pulsanti */
+    }
+
+    .box-container {
+        padding: 10px; /* Riduci il padding della box-container per schermi più piccoli */
+    }
+
+    .table td, .table th {
+        font-size: 0.5rem; /* Riduci la dimensione del testo della tabella */
+    }
+}
+
+/* Nuove regole di responsività per migliorare la visualizzazione su dispositivi più piccoli */
+@media (max-width: 768px) {
+    .table th, .table td {
+        font-size: 0.8rem;
+    }
+
+    .table thead {
+        display: none; /* Nasconde l'header della tabella su dispositivi più piccoli */
+    }
+
+    .table tr {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .table td {
+        display: block;
+        text-align: right;
+        position: relative;
+        padding-left: 50%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    .table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+}

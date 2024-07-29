@@ -1,0 +1,54 @@
+<%= stylesheet_link_tag 'page_clienti', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<div class="container mt-4">
+  <h1 class="custom-title text-center mb-4">Elenco Clienti</h1>
+
+  <div class="d-flex justify-content-between mb-3">
+    <%= link_to 'Aggiungi Nuovo Cliente', new_clienti_path, class: 'btn btn-primary' %>
+    <%= link_to 'Indietro', root_path, class: 'btn btn-secondary' %>
+  </div>
+
+  <% if notice %>
+    <div class="alert alert-success">
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <% if alert %>
+    <div class="alert alert-danger">
+      <%= alert %>
+    </div>
+  <% end %>
+
+  <div class="box-container p-4"> <!-- Aggiungi box-container qui -->
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Indirizzo</th>
+            <th scope="col">Azione</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cliente.each do |cliente| %>
+            <tr>
+              <td data-label="Nome"><%= cliente.nome %></td>
+              <td data-label="Email"><%= cliente.email %></td>
+              <td data-label="Telefono"><%= cliente.telefono %></td>
+              <td data-label="Indirizzo"><%= cliente.indirizzo %></td>
+              <td data-label="Azione">
+                <div class="btn-group-vertical">
+                  <%= link_to 'Modifica', edit_clienti_path(cliente), class: 'btn btn-warning btn-sm' %>
+                  <%= button_to 'Elimina', clienti_path(cliente), method: :delete, data: { confirm: 'Sei sicuro di voler eliminare questo cliente?' }, class: 'btn btn-danger btn-sm mt-2' %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

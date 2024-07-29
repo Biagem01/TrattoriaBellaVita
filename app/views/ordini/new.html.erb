@@ -1,0 +1,114 @@
+<%= stylesheet_link_tag 'new_order', media: 'all', 'data-turbo-track': 'reload' %>
+
+<div class="container mt-4">
+  <h1 class="custom-title mb-4 text-center">Crea Nuovo Ordine</h1>
+
+  <div class="card mx-auto">
+    <div class="card-body">
+      <% if flash[:alert] %>
+        <div class="alert alert-danger">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+
+      <% if @ordine.errors.any? %>
+        <div class="alert alert-danger">
+          <h4 class="alert-heading">Si sono verificati i seguenti errori:</h4>
+          <ul>
+            <% @ordine.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form_with(model: @ordine, url: ordini_index_path, local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
+        <div class="mb-3">
+          <%= form.label :cliente_id, 'Cliente', class: 'form-label' %>
+          <%= form.collection_select :cliente_id, @clienti, :id, :nome, { include_blank: 'Seleziona un cliente' }, class: 'form-control', required: true %>
+          <div class="invalid-feedback">
+            Per favore, seleziona un cliente.
+          </div>
+        </div>
+
+        <div id="ricette-container">
+          <%= form.fields_for :ordine_ricettum do |ordine_ricetta_form| %>
+            <div class="ricette-fields mb-3" data-index="<%= ordine_ricetta_form.index %>">
+              <div class="mb-3">
+                <%= ordine_ricetta_form.label :ricetta_id, 'Ricetta', class: 'form-label' %>
+                <%= ordine_ricetta_form.collection_select :ricetta_id, @ricette, :id, :nome, { include_blank: 'Seleziona una ricetta' }, class: 'form-control' %>
+              </div>
+
+              <div class="mb-3">
+                <%= ordine_ricetta_form.label :quantita, 'Quantità', class: 'form-label' %>
+                <%= ordine_ricetta_form.number_field :quantita, class: 'form-control', placeholder: 'Inserisci la quantità', required: true %>
+              </div>
+
+              <%= ordine_ricetta_form.hidden_field :_destroy %>
+              <a href="#" class="remove_fields btn btn-danger">Rimuovi ricetta</a>
+            </div>
+          <% end %>
+        </div>
+
+        <div class="mb-3">
+          <button type="button" id="add-ricetta" class="btn btn-info">Aggiungi Ricetta</button>
+        </div>
+
+        <div class="d-grid mb-3">
+          <%= form.submit 'Crea Ordine', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+
+      <div class="d-grid">
+        <%= link_to 'Indietro', ordini_index_path, class: 'btn btn-secondary' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('turbo:load', () => {
+  const ricetteContainer = document.querySelector('#ricette-container');
+  const addRicettaButton = document.querySelector('#add-ricetta');
+
+  if (!ricetteContainer || !addRicettaButton) {
+    console.error('Contenitore delle ricette o pulsante di aggiunta non trovato.');
+    return;
+  }
+
+  addRicettaButton.addEventListener('click', () => {
+    const lastField = ricetteContainer.querySelector('.ricette-fields:last-of-type');
+    if (lastField) {
+      const newField = lastField.cloneNode(true);
+      const newIndex = new Date().getTime();
+
+      newField.querySelectorAll('[name]').forEach(input => {
+        const name = input.name.replace(/\[\d+\]/, `[${newIndex}]`);
+        input.name = name;
+        input.id = name;
+
+        // Reset input values
+        if (input.type !== 'hidden') {
+          input.value = '';
+        }
+      });
+
+      ricetteContainer.appendChild(newField);
+    }
+  });
+
+  ricetteContainer.addEventListener('click', event => {
+    if (event.target.classList.contains('remove_fields')) {
+      event.preventDefault();
+      const field = event.target.closest('.ricette-fields');
+      if (field) {
+        const hiddenField = field.querySelector('input[type=hidden]');
+        if (hiddenField) {
+          hiddenField.value = '1';
+        }
+        field.style.display = 'none';
+      }
+    }
+  });
+});
+</script>
